@@ -41,7 +41,6 @@
       <section class="hero">
         <div class="hero-content">
           <div class="eyebrow">✨ Открой • Исследуй • Наслаждайся</div>
-          
           <h2 class="hero-title">
             Найди свое следующее <span class="accent">вдохновение</span>
           </h2>
@@ -53,7 +52,7 @@
           <div class="cta-group">
             <button class="btn btn-primary" id="exploreBtn">🗺️ Исследовать направления</button>
             <button class="btn btn-primary" id="quizBtn">❓ Опросник</button>
-            <button class="btn btn-secondary" id="TravelGPTBtn">💡 Как это работает?</button>
+            <button class="btn btn-secondary" id="TravelGPTBtn">💡 Как это работает?(ИИ)</button>
           </div>
 
           <div class="search-card">
@@ -79,8 +78,9 @@
             </div>
 
             <div class="search-tags">
-              <div class="tag filter-tag" data-filter="all">Все</div>
+              <div class="tag filter-tag active" data-filter="all">Все</div>
               <div class="tag filter-tag" data-filter="природа">🌲 Природа</div>
+              <div class="tag filter-tag" data-filter="горы">⛰️ Горы</div>
               <div class="tag filter-tag" data-filter="город">🏛️ Города</div>
               <div class="tag filter-tag" data-filter="пляж">🏝️ Пляж</div>
               <button class="btn btn-secondary" id="resetBtn" style="padding: 8px 14px; font-size: 13px;">Сбросить фильтры</button>
@@ -89,7 +89,7 @@
         </div>
 
         <div class="hero-featured">
-          <article class="card" data-id="1" data-category="пляж" data-maps="https://maps.google.com/?q=Baku+Seaside+Boulevard">
+          <article class="card" data-id="1" data-category="пляж" data-maps="https://maps.google.com/?q=Baku+Seaside+Boulevard" data-includes="Трансфер, гид, пляжное оборудование, обед в ресторане">
             <button class="favorite-btn" onclick="toggleFavorite(event, '1')">🤍</button>
             <div class="price-discount">-20%</div>
             <div class="card-media" style="background: linear-gradient(135deg, rgba(58,175,169,0.7), rgba(45,106,159,0.8)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800'); background-size: cover; background-position: center;"></div>
@@ -110,7 +110,7 @@
             </div>
           </article>
 
-          <article class="card" data-id="2" data-category="природа горы" data-maps="https://maps.google.com/?q=Gabala+Mountains">
+          <article class="card" data-id="2" data-category="природа горы" data-maps="https://maps.google.com/?q=Gabala+Mountains" data-includes="Трансфер, инструктор, снаряжение, горячий чай">
             <button class="favorite-btn" onclick="toggleFavorite(event, '2')">🤍</button>
             <div class="card-media" style="background: linear-gradient(135deg, rgba(210,159,107,0.7), rgba(30,100,110,0.8)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800'); background-size: cover; background-position: center;"></div>
             <div class="card-overlay">
@@ -133,11 +133,10 @@
 
       <div class="section-header" id="destinations">
         <h3 class="section-title">Популярные направления</h3>
-        <div class="section-subtitle">Тщательно отобрано для вас</div>
       </div>
 
       <div class="destinations-grid" id="destGrid">
-        <article class="card" data-id="3" data-category="прогулки" data-maps="https://maps.google.com/?q=Baku+Boulevard+Bicycle+Road">
+        <article class="card" data-id="3" data-category="прогулки" data-maps="https://maps.google.com/?q=Baku+Boulevard+Bicycle+Road" data-includes="Аренда велосипеда, карта маршрутов, вода, страховка">
           <button class="favorite-btn" onclick="toggleFavorite(event, '3')">🤍</button>
           <div class="price-discount">-15%</div>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(210,159,107,0.7), rgba(180,130,90,0.8)), url('https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRR0CcyEX_FOMwbNrDbXkW7nIg0O9fQfs-fEnp_cUHoq9mP1x5LdcG74gcQ0kaBz-onEbT_99JSLIPtXhjX4Nd9rD0vWAoF5CXBhmbWblLi7hqhBH4'); background-size: cover; background-position: center;"></div>
@@ -158,7 +157,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="4" data-category="природа" data-maps="https://maps.google.com/?q=Guba+Forest">
+        <article class="card" data-id="4" data-category="природа" data-maps="https://maps.google.com/?q=Guba+Forest" data-includes="Трансфер, проживание в домике, завтрак, карта троп">
           <button class="favorite-btn" onclick="toggleFavorite(event, '4')">🤍</button>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(30,100,110,0.7), rgba(20,70,80,0.8)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800'); background-size: cover; background-position: center;"></div>
           <div class="card-overlay">
@@ -176,8 +175,71 @@
             </div>
           </div>
         </article>
+        
+        <article class="card" data-id="17" data-category="горы природа" data-maps="https://maps.google.com/?q=Shahdag+Azerbaijan" data-includes="Скипасс, прокат снаряжения, инструктор, обед">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '17')">🤍</button>
+          <div class="price-discount">-18%</div>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(45,106,159,0.7), rgba(30,75,115,0.8)), url('https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">⛰️ Горы</span>
+            <h3 class="card-title">Шахдаг</h3>
+            <p class="card-description">Главный горнолыжный курорт Азербайджана с канатной дорогой и трассами</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.9 • 1.5k</div>
+                <div class="card-price">
+                  <span class="price-old">350₼</span>
+                  <span class="price-main">287₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
 
-        <article class="card" data-id="5" data-category="город" data-maps="https://maps.google.com/?q=Icherisheher+Baku">
+        <article class="card" data-id="18" data-category="горы природа" data-maps="https://maps.google.com/?q=Tufandag+Azerbaijan" data-includes="Канатная дорога, прокат лыж, карта трасс, горячий напиток">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '18')">🤍</button>
+          <div class="price-discount">-15%</div>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(45,106,159,0.7), rgba(30,75,115,0.8)), url('https://www.tufandag.com/storage/app/media/Gallery/Ropeline_cropped.webp'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">⛰️ Горы</span>
+            <h3 class="card-title">Туфандаг</h3>
+            <p class="card-description">Горный курорт в Гусаре с отличным климатом, канатными дорогами и зимними трассами</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.8 • 1.2k</div>
+                <div class="card-price">
+                  <span class="price-old">320₼</span>
+                  <span class="price-main">272₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="19" data-category="горы природа" data-maps="https://maps.google.com/?q=Beshbarmag+Azerbaijan" data-includes="Трансфер, гид-историк, вход в святыню, легенды">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '19')">🤍</button>
+          <div class="price-discount">-12%</div>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(45,106,159,0.7), rgba(30,75,115,0.8)), url('https://azerbaijan.travel/resize3000/center/pages/327/3dc2831f-e50e-424e-8419-31df2981eaec.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">⛰️ Горы</span>
+            <h3 class="card-title">Бешбармаг</h3>
+            <p class="card-description">Священная гора с необычными скальными формами, известная своими легендами</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.7 • 980</div>
+                <div class="card-price">
+                  <span class="price-old">220₼</span>
+                  <span class="price-main">194₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="5" data-category="город" data-maps="https://maps.google.com/?q=Icherisheher+Baku" data-includes="Экскурсия, музеи, кофе в кафе, карта города">
           <button class="favorite-btn" onclick="toggleFavorite(event, '5')">🤍</button>
           <div class="price-discount">-30%</div>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(45,106,159,0.7), rgba(30,75,115,0.8)), url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800'); background-size: cover; background-position: center;"></div>
@@ -198,7 +260,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="6" data-category="пляж" data-maps="https://maps.google.com/?q=Nabran+Beach">
+        <article class="card" data-id="6" data-category="пляж" data-maps="https://maps.google.com/?q=Nabran+Beach" data-includes="Трансфер, лежак и зонт, обед, вход на пляж">
           <button class="favorite-btn" onclick="toggleFavorite(event, '6')">🤍</button>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(58,175,169,0.7), rgba(40,125,120,0.8)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800'); background-size: cover; background-position: center;"></div>
           <div class="card-overlay">
@@ -217,7 +279,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="7" data-category="кулинария" data-maps="https://maps.google.com/?q+Baku+Food+Street">
+        <article class="card" data-id="7" data-category="кулинария" data-maps="https://maps.google.com/?q+Baku+Food+Street" data-includes="Гид-гастроном, 5 дегустаций, рецепты, напитки">
           <button class="favorite-btn" onclick="toggleFavorite(event, '7')">🤍</button>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(210,159,107,0.7), rgba(180,130,90,0.8)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800'); background-size: cover; background-position: center;"></div>
           <div class="card-overlay">
@@ -236,7 +298,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="8" data-category="искусство город" data-maps="https://maps.google.com/?q=YARAT+Art+Center+Baku">
+        <article class="card" data-id="8" data-category="искусство город" data-maps="https://maps.google.com/?q=YARAT+Art+Center+Baku" data-includes="Входные билеты, гид по искусству, каталог, кофе">
           <button class="favorite-btn" onclick="toggleFavorite(event, '8')">🤍</button>
           <div class="price-discount">-25%</div>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(30,100,110,0.7), rgba(20,70,80,0.8)), url('https://million-wallpapers.ru/wallpapers/3/78/475037882443469/vektornaya-grafika-i-iskusstvo-mira.jpg'); background-size: cover; background-position: center;"></div>
@@ -257,7 +319,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="10" data-category="экстрим" data-maps="https://maps.google.com/?q=Laza+Village+Gusar">
+        <article class="card" data-id="10" data-category="экстрим" data-maps="https://maps.google.com/?q=Laza+Village+Gusar" data-includes="Инструктор, снаряжение, страховка, питание, ночлег">
           <button class="favorite-btn" onclick="toggleFavorite(event, '10')">🤍</button>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(180,40,40,0.7), rgba(120,20,20,0.8)), url('https://ahvgorah.com/uploads/2025/11/kakie-vidy-ekstremal-nogo-turizma-susestvuut-i-cem-oni-otlicautsa.webp'); background-size: cover; background-position: center;"></div>
           <div class="card-overlay">
@@ -276,7 +338,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="11" data-category="озёра природа" data-maps="https://maps.google.com/?q=Lake+Goygol">
+        <article class="card" data-id="11" data-category="озёра природа" data-maps="https://maps.google.com/?q=Lake+Goygol" data-includes="Трансфер, экологический гид, пикник, рыбалка">
           <button class="favorite-btn" onclick="toggleFavorite(event, '11')">🤍</button>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(0,120,140,0.7), rgba(0,80,100,0.8)), url('https://images.wallpaperscraft.ru/image/single/ozero_gory_les_152659_3840x2400.jpg'); background-size: cover; background-position: center;"></div>
           <div class="card-overlay">
@@ -295,7 +357,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="12" data-category="история" data-maps="https://maps.google.com/?q=Lahic+Azerbaijan">
+        <article class="card" data-id="12" data-category="история" data-maps="https://maps.google.com/?q=Lahic+Azerbaijan" data-includes="Трансфер, историк-гид, обед в аутентичном доме, сувенир">
           <button class="favorite-btn" onclick="toggleFavorite(event, '12')">🤍</button>
           <div class="price-discount">-10%</div>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(120,90,60,0.7), rgba(90,60,40,0.8)), url('https://cheapfortrip.com/blog/app/uploads/2022/08/image_processing20181012-4-ly5kv5.jpg'); background-size: cover; background-position: center;"></div>
@@ -316,7 +378,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="14" data-category="зима горы" data-maps="https://maps.google.com/?q=Shahdag+Mountain">
+        <article class="card" data-id="14" data-category="зима горы" data-maps="https://maps.google.com/?q=Shahdag+Mountain" data-includes="Термобельё, снаряжение, инструктор, горячее питание">
           <button class="favorite-btn" onclick="toggleFavorite(event, '14')">🤍</button>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(70,90,150,0.7), rgba(40,50,90,0.8)), url('https://99px.ru/sstorage/53/2023/01/tmb_348232_911386.jpg'); background-size: cover; background-position: center;"></div>
           <div class="card-overlay">
@@ -335,7 +397,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="15" data-category="ночь" data-maps="https://maps.google.com/?q=Karanohur+Lake">
+        <article class="card" data-id="15" data-category="ночь" data-maps="https://maps.google.com/?q=Karanohur+Lake" data-includes="Фонари, палатка, гид-астроном, ужин у костра">
           <button class="favorite-btn" onclick="toggleFavorite(event, '15')">🤍</button>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(20,20,40,0.7), rgba(10,10,20,0.8)), url('https://image.fonwall.ru/o/gz/galaxy-microsoft-windows-night-tents.jpeg?auto=compress&fit=crop&w=2560&h=1440&domain=img3.fonwall.ru'); background-size: cover; background-position: center;"></div>
           <div class="card-overlay">
@@ -354,7 +416,7 @@
           </div>
         </article>
 
-        <article class="card" data-id="16" data-category="кемпинг природа" data-maps="https://maps.google.com/?q=Khinalig+Azerbaijan">
+        <article class="card" data-id="16" data-category="кемпинг природа" data-maps="https://maps.google.com/?q=Khinalig+Azerbaijan" data-includes="Место под палатку, костровище, дрова, питьевая вода">
           <button class="favorite-btn" onclick="toggleFavorite(event, '16')">🤍</button>
           <div class="card-media" style="background: linear-gradient(135deg, rgba(110,70,30,0.7), rgba(80,50,20,0.8)), url('https://img.today.travel/insecure/rs:fill:1496:658/czM6Ly9wdWJsaWMvYmxvZ19wb3N0cy9KaC9aOS9kVC9KaFo5ZFQ3YjV5UUZyVWRaZGdlVi53ZWJw'); background-size: cover; background-position: center;"></div>
           <div class="card-overlay">

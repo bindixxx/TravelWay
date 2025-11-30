@@ -142,7 +142,10 @@ function openModal(card) {
   const desc = card.querySelector('.card-description')?.innerText || '';
   const rating = card.querySelector('.card-rating')?.innerText || '';
   const gmap = card.dataset.maps || "";
+  const includes = card.dataset.includes || ""; // Новая строка
+  
   modal.dataset.map = gmap;
+  modal.dataset.includes = includes; // Новая строка
 
   const priceMain = card.querySelector('.price-main')?.innerText || '';
   const priceOld = card.querySelector('.price-old')?.innerText || '';
@@ -177,6 +180,30 @@ function openModal(card) {
   }
 
   modalPrice.innerHTML = priceHTML;
+
+  // Новый блок: добавление информации о включенных услугах
+  let modalIncludes = modal.querySelector('.modal-includes');
+  
+  if (!modalIncludes) {
+    modalIncludes = document.createElement('div');
+    modalIncludes.className = 'modal-includes';
+    modalPrice.insertAdjacentElement('afterend', modalIncludes);
+  }
+
+  if (includes) {
+    const includesList = includes.split(',').map(item => item.trim());
+    let includesHTML = '<h4 style="margin: 16px 0 8px 0; font-size: 14px; font-weight: 600;">Что входит в цену:</h4>';
+    includesHTML += '<ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">';
+    
+    includesList.forEach(item => {
+      includesHTML += `<li>${item}</li>`;
+    });
+    
+    includesHTML += '</ul>';
+    modalIncludes.innerHTML = includesHTML;
+  } else {
+    modalIncludes.innerHTML = '';
+  }
 
   modal.classList.add('show');
   modal.setAttribute('aria-hidden', 'false');
