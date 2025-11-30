@@ -1321,6 +1321,128 @@
   border-left: 3px solid transparent;
 }
 
+.booking-modal {
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) rgba(0, 0, 0, 0.1);
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+.scroll-indicator {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(0deg, var(--bg-surface) 60%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+}
+
+.scroll-indicator-arrow {
+  animation: bounceDown 1.5s infinite;
+  font-size: 20px;
+  color: var(--primary);
+}
+
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.scroll-progress {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  width: 0%;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+.modal-content::after {
+  content: '';
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(0deg, var(--bg-surface), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content.has-scroll::after {
+  opacity: 1;
+}
+
+@media (max-width: 500px) {
+  .modal-content {
+    max-height: 85vh;
+  }
+  
+  .scroll-indicator {
+    height: 32px;
+  }
+  
+  .scroll-indicator-arrow {
+    font-size: 16px;
+  }
+  
+  .modal-content::-webkit-scrollbar {
+    width: 6px;
+  }
+}
+
 .modal-includes li:last-child {
   margin-bottom: 0;
 }

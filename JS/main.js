@@ -118,8 +118,6 @@ function showNotification(message, icon = '') {
   }, 2500);
 }
 
-
-
 /* --------------------------- Модалки --------------------------- */
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modal-img');
@@ -477,11 +475,27 @@ async function sendEmailViaEmailJS(data) {
     );
 
     console.log("✅ Email успешно отправлен!", response);
-    return response;
+    return { success: true, response };
     
   } catch (error) {
     console.error("❌ Ошибка отправки email:", error);
-    throw error;
+    
+    // Определяем тип ошибки
+    let userMessage = "Произошла ошибка при отправке заявки.";
+    
+    if (!navigator.onLine) {
+      userMessage = "Отсутствует подключение к интернету. Проверьте сеть и попробуйте снова.";
+    } else if (error.status === 400) {
+      userMessage = "Некорректные данные. Проверьте правильность заполнения полей.";
+    } else if (error.status === 401 || error.status === 403) {
+      userMessage = "Ошибка авторизации сервиса. Обратитесь в поддержку.";
+    } else if (error.status === 429) {
+      userMessage = "Слишком много запросов. Попробуйте через минуту.";
+    } else if (error.status >= 500) {
+      userMessage = "Сервис временно недоступен. Попробуйте позже.";
+    }
+    
+    return { success: false, error, userMessage };
   }
 }
 
@@ -493,8 +507,13 @@ bookingForm.addEventListener("submit", async (e) => {
     showNotification("Пожалуйста, заполните все поля корректно", "⚠️");
     return;
   }
+  if (!navigator.onLine) {
+    showNotification("Отсутствует подключение к интернету", "📡");
+    return;
+  }
 
   bookingSubmitBtn.classList.add("loading");
+  bookingSubmitBtn.disabled = true;
   btnText.innerText = "Отправка...";
 
   const formData = {
@@ -508,14 +527,42 @@ bookingForm.addEventListener("submit", async (e) => {
   };
 
   try {
-    await sendEmailViaEmailJS(formData);
-    showSuccessMessage(formData);
+    const result = await sendEmailViaEmailJS(formData);
+    
+    if (result.success) {
+      showSuccessMessage(formData);
+    } else {
+      showNotification(result.userMessage, "❌");
+      const retryBtn = document.createElement('button');
+      retryBtn.className = 'btn btn-secondary';
+      retryBtn.style.marginTop = '16px';
+      retryBtn.textContent = 'Повторить попытку';
+      retryBtn.onclick = () => bookingForm.dispatchEvent(new Event('submit'));
+      
+      const contactInfo = document.createElement('p');
+      contactInfo.style.marginTop = '12px';
+      contactInfo.style.fontSize = '13px';
+      contactInfo.style.color = 'var(--text-muted)';
+      contactInfo.innerHTML = 'Или свяжитесь с нами напрямую:<br>📞 <a href="tel:+994501234567" style="color: var(--primary)">+994 50 123 45 67</a><br>✉️ <a href="mailto:info@travelway.az" style="color: var(--primary)">info@travelway.az</a>';
+
+      const formContainer = document.getElementById('bookingFormContainer');
+      if (!formContainer.querySelector('.retry-section')) {
+        const retrySection = document.createElement('div');
+        retrySection.className = 'retry-section';
+        retrySection.appendChild(retryBtn);
+        retrySection.appendChild(contactInfo);
+        formContainer.appendChild(retrySection);
+        
+        setTimeout(() => retrySection.remove(), 10000);
+      }
+    }
     
   } catch (error) {
-    console.error("Ошибка отправки:", error);
-    showNotification("Ошибка отправки. Попробуйте позже.", "❌");
-    
+    console.error("Критическая ошибка:", error);
+    showNotification("Критическая ошибка. Перезагрузите страницу.", "🚨");
+  } finally {
     bookingSubmitBtn.classList.remove("loading");
+    bookingSubmitBtn.disabled = false;
     btnText.innerText = "Отправить заявку";
   }
 });
@@ -534,7 +581,6 @@ function showSuccessMessage(data) {
   showNotification("Заявка успешно отправлена! 📩", "✅");
   closeModal();
 }
-
 
 /* -------------------------- Закрытие success message -------------------------- */
 document.getElementById("closeSuccessBtn")?.addEventListener("click", () => {
