@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TravelWay — Premium Travel Experience</title>
+<link rel="stylesheet" href="../CSS/main.css">
+</head>
+<body>
+  <div class="app">
+    <div class="bg-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <div class="brand">
+          <div class="logo">TW</div>
+          <div class="brand-info">
+            <h1>TravelWay</h1>
+            <p>Исследуй мир с нами</p>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="favorites-badge" id="favoritesBtn">
+            <span>❤️</span>
+            <span class="favorites-count" id="favCount">0</span>
+          </div>
+          <label class="theme-switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="switch-track">
+              <span class="switch-thumb" id="themeIcon">🌙</span>
+            </span>
+          </label>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">✨ Открой • Исследуй • Наслаждайся</div>
+          
+          <h2 class="hero-title">
+            Найди свое следующее <span class="accent">вдохновение</span>
+          </h2>
+          
+          <p class="hero-description">
+            Современный интерфейс для путешествий с элегантным дизайном, плавными анимациями и продуманной навигацией. Откройте новые горизонты вместе с нами.
+          </p>
+
+          <div class="cta-group">
+            <button class="btn btn-primary" id="exploreBtn">🗺️ Исследовать направления</button>
+            <button class="btn btn-primary" id="quizBtn">❓ Опросник</button>
+            <button class="btn btn-secondary" id="TravelGPTBtn">💡 Как это работает?</button>
+          </div>
+
+          <div class="search-card">
+            <div class="search-header">
+              <div class="search-title">Быстрый поиск</div>
+              <div class="search-hint">Попробуй: Баку, Горы Кавказа</div>
+            </div>
+
+            <div class="search-inputs">
+              <input type="text" class="input-field" id="searchInput" placeholder="Куда хотите поехать?">
+              <select class="input-field">
+                <option>Любая дата</option>
+                <option>На этой неделе</option>
+                <option>В этом месяце</option>
+              </select>
+              <select class="input-field">
+                <option>1 человек</option>
+                <option>2 человека</option>
+                <option>3-4 человека</option>
+                <option>5+ человек</option>
+              </select>
+              <button class="btn btn-primary" id="searchBtn">Искать</button>
+            </div>
+
+            <div class="search-tags">
+              <div class="tag filter-tag" data-filter="all">Все</div>
+              <div class="tag filter-tag" data-filter="природа">🌲 Природа</div>
+              <div class="tag filter-tag" data-filter="город">🏛️ Города</div>
+              <div class="tag filter-tag" data-filter="пляж">🏝️ Пляж</div>
+              <button class="btn btn-secondary" id="resetBtn" style="padding: 8px 14px; font-size: 13px;">Сбросить фильтры</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-featured">
+          <article class="card" data-id="1" data-category="пляж" data-maps="https://maps.google.com/?q=Baku+Seaside+Boulevard">
+            <button class="favorite-btn" onclick="toggleFavorite(event, '1')">🤍</button>
+            <div class="price-discount">-20%</div>
+            <div class="card-media" style="background: linear-gradient(135deg, rgba(58,175,169,0.7), rgba(45,106,159,0.8)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800'); background-size: cover; background-position: center;"></div>
+            <div class="card-overlay">
+              <span class="card-badge">🌊 Побережье</span>
+              <h3 class="card-title">Бакинское побережье</h3>
+              <p class="card-description">Закаты над Каспием, современные набережные и уютные кафе с видом на море</p>
+              <div class="card-footer">
+                <div class="card-info">
+                  <div class="card-rating">⭐ 4.8 • 1.2k</div>
+                  <div class="card-price">
+                    <span class="price-old">250₼</span>
+                    <span class="price-main">200₼</span>
+                  </div>
+                </div>
+                <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-id="2" data-category="природа горы" data-maps="https://maps.google.com/?q=Gabala+Mountains">
+            <button class="favorite-btn" onclick="toggleFavorite(event, '2')">🤍</button>
+            <div class="card-media" style="background: linear-gradient(135deg, rgba(210,159,107,0.7), rgba(30,100,110,0.8)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800'); background-size: cover; background-position: center;"></div>
+            <div class="card-overlay">
+              <span class="card-badge">⛰️ Горы</span>
+              <h3 class="card-title">Горные вершины</h3>
+              <p class="card-description">Маршруты всех уровней, панорамные виды и свежий горный воздух</p>
+              <div class="card-footer">
+                <div class="card-info">
+                  <div class="card-rating">⭐ 4.9 • 862</div>
+                  <div class="card-price">
+                    <span class="price-main">180₼</span>
+                  </div>
+                </div>
+                <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="section-header" id="destinations">
+        <h3 class="section-title">Популярные направления</h3>
+        <div class="section-subtitle">Тщательно отобрано для вас</div>
+      </div>
+
+      <div class="destinations-grid" id="destGrid">
+        <article class="card" data-id="3" data-category="прогулки" data-maps="https://maps.google.com/?q=Baku+Boulevard+Bicycle+Road">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '3')">🤍</button>
+          <div class="price-discount">-15%</div>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(210,159,107,0.7), rgba(180,130,90,0.8)), url('https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRR0CcyEX_FOMwbNrDbXkW7nIg0O9fQfs-fEnp_cUHoq9mP1x5LdcG74gcQ0kaBz-onEbT_99JSLIPtXhjX4Nd9rD0vWAoF5CXBhmbWblLi7hqhBH4'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">🚶‍➡️ Прогулки</span>
+            <h3 class="card-title">Велопрогулки</h3>
+            <p class="card-description">Места которые обеспечат езду на велосипеде</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.6</div>
+                <div class="card-price">
+                  <span class="price-old">120₼</span>
+                  <span class="price-main">102₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="4" data-category="природа" data-maps="https://maps.google.com/?q=Guba+Forest">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '4')">🤍</button>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(30,100,110,0.7), rgba(20,70,80,0.8)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">🌲 Природа</span>
+            <h3 class="card-title">Лесное убежище</h3>
+            <p class="card-description">Домики, тропы и отдых у реки среди природы</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.9</div>
+                <div class="card-price">
+                  <span class="price-main">150₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="5" data-category="город" data-maps="https://maps.google.com/?q=Icherisheher+Baku">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '5')">🤍</button>
+          <div class="price-discount">-30%</div>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(45,106,159,0.7), rgba(30,75,115,0.8)), url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">🏛️ Город</span>
+            <h3 class="card-title">Городская культура</h3>
+            <p class="card-description">Музеи, кафе и продуманные пешеходные маршруты</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.7</div>
+                <div class="card-price">
+                  <span class="price-old">200₼</span>
+                  <span class="price-main">140₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="6" data-category="пляж" data-maps="https://maps.google.com/?q=Nabran+Beach">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '6')">🤍</button>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(58,175,169,0.7), rgba(40,125,120,0.8)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">🏝️ Остров</span>
+            <h3 class="card-title">Островной отдых</h3>
+            <p class="card-description">Частные пляжи и роскошь босиком</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.8</div>
+                <div class="card-price">
+                  <span class="price-main">280₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="7" data-category="кулинария" data-maps="https://maps.google.com/?q+Baku+Food+Street">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '7')">🤍</button>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(210,159,107,0.7), rgba(180,130,90,0.8)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">🍽️ Кулинария</span>
+            <h3 class="card-title">Кулинарный тур</h3>
+            <p class="card-description">Местные вкусы и дегустации от шеф-поваров</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.7</div>
+                <div class="card-price">
+                  <span class="price-main">220₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="8" data-category="искусство город" data-maps="https://maps.google.com/?q=YARAT+Art+Center+Baku">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '8')">🤍</button>
+          <div class="price-discount">-25%</div>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(30,100,110,0.7), rgba(20,70,80,0.8)), url('https://million-wallpapers.ru/wallpapers/3/78/475037882443469/vektornaya-grafika-i-iskusstvo-mira.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">🎨 Искусство</span>
+            <h3 class="card-title">Арт-галереи</h3>
+            <p class="card-description">Современное искусство и культурные пространства</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.6</div>
+                <div class="card-price">
+                  <span class="price-old">160₼</span>
+                  <span class="price-main">120₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="10" data-category="экстрим" data-maps="https://maps.google.com/?q=Laza+Village+Gusar">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '10')">🤍</button>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(180,40,40,0.7), rgba(120,20,20,0.8)), url('https://ahvgorah.com/uploads/2025/11/kakie-vidy-ekstremal-nogo-turizma-susestvuut-i-cem-oni-otlicautsa.webp'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">⚡ Экстрим</span>
+            <h3 class="card-title">Экстремальные походы</h3>
+            <p class="card-description">Для любителей адреналина: склоны, уступы и резкие подъёмы</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.8</div>
+                <div class="card-price">
+                  <span class="price-main">320₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="11" data-category="озёра природа" data-maps="https://maps.google.com/?q=Lake+Goygol">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '11')">🤍</button>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(0,120,140,0.7), rgba(0,80,100,0.8)), url('https://images.wallpaperscraft.ru/image/single/ozero_gory_les_152659_3840x2400.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">💧 Озёра</span>
+            <h3 class="card-title">Спокойные водоёмы</h3>
+            <p class="card-description">Чистый воздух, тишина и зеркальная гладь озёр</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.7</div>
+                <div class="card-price">
+                  <span class="price-main">170₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="12" data-category="история" data-maps="https://maps.google.com/?q=Lahic+Azerbaijan">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '12')">🤍</button>
+          <div class="price-discount">-10%</div>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(120,90,60,0.7), rgba(90,60,40,0.8)), url('https://cheapfortrip.com/blog/app/uploads/2022/08/image_processing20181012-4-ly5kv5.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">🏺 История</span>
+            <h3 class="card-title">Исторические тропы</h3>
+            <p class="card-description">Маршруты по древним селам, крепостям и культурным местам</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.8</div>
+                <div class="card-price">
+                  <span class="price-old">190₼</span>
+                  <span class="price-main">171₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="14" data-category="зима горы" data-maps="https://maps.google.com/?q=Shahdag+Mountain">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '14')">🤍</button>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(70,90,150,0.7), rgba(40,50,90,0.8)), url('https://99px.ru/sstorage/53/2023/01/tmb_348232_911386.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">❄️ Зима</span>
+            <h3 class="card-title">Зимние маршруты</h3>
+            <p class="card-description">Снежные тропы, морозный воздух и зимние панорамы</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.5</div>
+                <div class="card-price">
+                  <span class="price-main">210₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="15" data-category="ночь" data-maps="https://maps.google.com/?q=Karanohur+Lake">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '15')">🤍</button>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(20,20,40,0.7), rgba(10,10,20,0.8)), url('https://image.fonwall.ru/o/gz/galaxy-microsoft-windows-night-tents.jpeg?auto=compress&fit=crop&w=2560&h=1440&domain=img3.fonwall.ru'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">🌌 Ночь</span>
+            <h3 class="card-title">Ночные походы</h3>
+            <p class="card-description">Звёзды, прохлада и тёмные маршруты для романтики</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.6</div>
+                <div class="card-price">
+                  <span class="price-main">130₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="16" data-category="кемпинг природа" data-maps="https://maps.google.com/?q=Khinalig+Azerbaijan">
+          <button class="favorite-btn" onclick="toggleFavorite(event, '16')">🤍</button>
+          <div class="card-media" style="background: linear-gradient(135deg, rgba(110,70,30,0.7), rgba(80,50,20,0.8)), url('https://img.today.travel/insecure/rs:fill:1496:658/czM6Ly9wdWJsaWMvYmxvZ19wb3N0cy9KaC9aOS9kVC9KaFo5ZFQ3YjV5UUZyVWRaZGdlVi53ZWJw'); background-size: cover; background-position: center;"></div>
+          <div class="card-overlay">
+            <span class="card-badge">⛺ Кемпинг</span>
+            <h3 class="card-title">Кемпинговые зоны</h3>
+            <p class="card-description">Места, где можно поставить палатку и провести ночь</p>
+            <div class="card-footer">
+              <div class="card-info">
+                <div class="card-rating">⭐ 4.8</div>
+                <div class="card-price">
+                  <span class="price-main">95₼</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); openModal(this.closest('.card'))" style="padding: 10px 16px; font-size: 13px;">Подробнее</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <section class="why-us container">
+        <h2 class="why-title accent">Почему выбирают нас</h2>
+
+        <div class="why-grid">
+          <div class="why-card" style="--delay:0ms">
+            <div class="why-icon">
+              🌍
+            </div>
+            <h3>Широкий выбор направлений</h3>
+            <p>Мы подбираем лучшие маршруты и насыщенные путешествия под любой стиль отдыха.</p>
+          </div>
+
+          <div class="why-card" style="--delay:150ms">
+            <div class="why-icon">
+              ⚡
+            </div>
+            <h3>Быстрое бронирование</h3>
+            <p>Интуитивный процесс выбора, мгновенное оформление и подтверждение туров.</p>
+          </div>
+
+          <div class="why-card" style="--delay:300ms">
+            <div class="why-icon">
+              🎧
+            </div>
+            <h3>Индивидуальный сервис</h3>
+            <p>Мы сопровождаем вас на каждом этапе — от выбора до возвращения домой.</p>
+          </div>
+
+          <div class="why-card" style="--delay:450ms">
+            <div class="why-icon">
+              💡
+            </div>
+            <h3>Идеи для вдохновения</h3>
+            <p>Готовые подборки направлений, уникальные маршруты и персональные рекомендации.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>© <strong>TravelWay</strong> 2025 — Premium Travel UI</div>
+        <div>Создано с любовью к путешествиям</div>
+      </footer>
+    </div>
+  </div>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content" role="document">
+      <span class="modal-close" aria-label="Закрыть">&times;</span>
+      <img id="modal-img" class="modal-img" alt="">
+      <h2 id="modal-title" class="modal-title"></h2>
+      <p id="modal-desc" class="modal-desc"></p>
+      <div id="modal-rating" class="modal-rating"></div>
+      <div class="modal-buttons">
+        <button class="btn btn-primary" id="bookBtn">Забронировать</button>
+        <button class="btn btn-secondary" id="shareBtn">Поделиться</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="notification" class="notification" role="status" aria-live="polite">
+    <div class="notification-icon" id="notifIcon"></div>
+    <div class="notification-text" id="notifText"></div>
+  </div>
+<div id="bookingModal" class="modal">
+  <div class="modal-content booking-modal">
+    <span class="modal-close" id="closeBookingModal">&times;</span>
+
+    <div id="bookingFormContainer">
+      <h2>Запрос на бронирование</h2>
+      <p class="booking-subtitle">
+        Оставьте ваши данные — мы проверим доступность и свяжемся с вами.
+      </p>
+
+      <form id="bookingForm">
+        <input type="hidden" id="bookingPlace">
+        <div>
+          <label>Ваше имя *</label>
+          <input type="text" id="bookingName" required placeholder="Например: Kamran">
+          <span class="error-message" id="errorName">Пожалуйста, введите ваше имя</span>
+        </div>
+
+        <div>
+          <label>Телефон *</label>
+          <input type="tel" id="bookingPhone" required placeholder="+994 XX XXX XX XX">
+          <span class="error-message" id="errorPhone">Пожалуйста, введите корректный номер телефона</span>
+        </div>
+
+        <div>
+          <label>Email *</label>
+          <input type="email" id="bookingEmail" required placeholder="example@gmail.com">
+          <span class="error-message" id="errorEmail">Пожалуйста, введите корректный email</span>
+        </div>
+
+        <div>
+          <label>Дата поездки *</label>
+          <input type="date" id="bookingDate" required>
+          <span class="error-message" id="errorDate">Пожалуйста, выберите дату</span>
+        </div>
+
+        <div>
+          <label>Количество человек *</label>
+          <input type="number" id="bookingPeople" min="1" max="50" required placeholder="1">
+          <span class="error-message" id="errorPeople">Пожалуйста, укажите количество человек</span>
+        </div>
+
+        <div>
+          <label>Комментарий (необязательно)</label>
+          <textarea id="bookingComment" rows="3" placeholder="Дополнительные пожелания или вопросы..."></textarea>
+        </div>
+
+        <button type="submit" id="bookingSubmitBtn" class="btn btn-primary">
+          <span id="btnText">Отправить заявку</span>
+        </button>
+      </form>
+    </div>
+
+    <div id="successMessage" class="success-message" style="display: none;">
+      <div class="success-icon">✅</div>
+      <h3>Заявка успешно отправлена!</h3>
+      <p>Мы получили ваш запрос на бронирование <strong id="successPlace"></strong>.</p>
+      <p>На ваш email <strong id="successEmail"></strong> отправлено подтверждение.</p>
+      <p style="margin-top: 16px;">Наш менеджер свяжется с вами в ближайшее время!</p>
+      <button class="btn btn-primary" id="closeSuccessBtn" style="margin-top: 24px;">Отлично!</button>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="../JS/main.js"></script>
+</body>
+</html>

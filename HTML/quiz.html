@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="../CSS/quiz.css">
+<title>TravelWay Quiz — Найди свое место</title>
+</head>
+<body>
+  <div class="app">
+    <div class="bg-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <div class="header-left">
+          <button class="back-btn" id="backBtn">
+            ← Назад
+          </button>
+          <div class="brand">
+            <div class="logo">TW</div>
+            <div class="brand-info">
+              <h1>TravelWay</h1>
+              <p>Опросник для путешествий</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <label class="theme-switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="switch-track">
+              <span class="switch-thumb" id="themeIcon">🌙</span>
+            </span>
+          </label>
+        </div>
+      </header>
+
+      <div class="quiz-container">
+        <div class="quiz-header">
+          <h2 class="quiz-title">✨ Найди свое идеальное место</h2>
+          <p class="quiz-subtitle">Ответь на несколько вопросов, и мы подберем лучший вариант отдыха специально для тебя</p>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+
+        <div id="quizQuestions">
+          <!-- Нулевой вопрос -->
+          <div class="question-card" data-question="0">
+            <span class="question-number">Начало</span>
+            <h3 class="question-text">Хотите пройти опросник для быстрого подбора идеального места отдыха?</h3>
+            <div class="answers-grid">
+              <div class="answer-option" data-answer="yes">
+                <div class="answer-icon">✅</div>
+                <div>Да, давайте начнем!</div>
+              </div>
+              <div class="answer-option" data-answer="no">
+                <div class="answer-icon">❌</div>
+                <div>Нет, вернусь позже</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 1 -->
+          <div class="question-card hidden" data-question="1">
+            <span class="question-number">Вопрос 1 из 5</span>
+            <h3 class="question-text">Какой тип отдыха вас привлекает больше всего?</h3>
+            <div class="answers-grid">
+              <div class="answer-option" data-value="nature">
+                <div class="answer-icon">🌲</div>
+                <div>Природа и горы</div>
+              </div>
+              <div class="answer-option" data-value="beach">
+                <div class="answer-icon">🏖️</div>
+                <div>Пляж и море</div>
+              </div>
+              <div class="answer-option" data-value="city">
+                <div class="answer-icon">🏛️</div>
+                <div>Город и культура</div>
+              </div>
+              <div class="answer-option" data-value="extreme">
+                <div class="answer-icon">⚡</div>
+                <div>Экстрим и приключения</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 2 -->
+          <div class="question-card hidden" data-question="2">
+            <span class="question-number">Вопрос 2 из 5</span>
+            <h3 class="question-text">Какая активность вам ближе?</h3>
+            <div class="answers-grid">
+              <div class="answer-option" data-value="hiking">
+                <div class="answer-icon">🥾</div>
+                <div>Пешие походы</div>
+              </div>
+              <div class="answer-option" data-value="relaxation">
+                <div class="answer-icon">😌</div>
+                <div>Спокойный отдых</div>
+              </div>
+              <div class="answer-option" data-value="culture">
+                <div class="answer-icon">🎨</div>
+                <div>Музеи и галереи</div>
+              </div>
+              <div class="answer-option" data-value="food">
+                <div class="answer-icon">🍽️</div>
+                <div>Гастрономия</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 3 -->
+          <div class="question-card hidden" data-question="3">
+            <span class="question-number">Вопрос 3 из 5</span>
+            <h3 class="question-text">Когда вы предпочитаете путешествовать?</h3>
+            <div class="answers-grid">
+              <div class="answer-option" data-value="summer">
+                <div class="answer-icon">☀️</div>
+                <div>Летом - жара и солнце</div>
+              </div>
+              <div class="answer-option" data-value="winter">
+                <div class="answer-icon">❄️</div>
+                <div>Зимой - снег и холод</div>
+              </div>
+              <div class="answer-option" data-value="spring-autumn">
+                <div class="answer-icon">🍂</div>
+                <div>Весной/Осенью - умеренная погода</div>
+              </div>
+              <div class="answer-option" data-value="anytime">
+                <div class="answer-icon">🌍</div>
+                <div>В любое время года</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 4 -->
+          <div class="question-card hidden" data-question="4">
+            <span class="question-number">Вопрос 4 из 5</span>
+            <h3 class="question-text">С кем вы путешествуете?</h3>
+            <div class="answers-grid">
+              <div class="answer-option" data-value="solo">
+                <div class="answer-icon">🧳</div>
+                <div>Один/Одна</div>
+              </div>
+              <div class="answer-option" data-value="couple">
+                <div class="answer-icon">💑</div>
+                <div>Вдвоем</div>
+              </div>
+              <div class="answer-option" data-value="family">
+                <div class="answer-icon">👨‍👩‍👧‍👦</div>
+                <div>Семьей</div>
+              </div>
+              <div class="answer-option" data-value="friends">
+                <div class="answer-icon">👥</div>
+                <div>С друзьями</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 5 -->
+          <div class="question-card hidden" data-question="5">
+            <span class="question-number">Вопрос 5 из 5</span>
+            <h3 class="question-text">Какой уровень комфорта вам нужен?</h3>
+            <div class="answers-grid">
+              <div class="answer-option" data-value="luxury">
+                <div class="answer-icon">💎</div>
+                <div>Премиум - максимальный комфорт</div>
+              </div>
+              <div class="answer-option" data-value="comfort">
+                <div class="answer-icon">🏨</div>
+                <div>Комфортно - хороший отель</div>
+              </div>
+              <div class="answer-option" data-value="budget">
+                <div class="answer-icon">🏡</div>
+                <div>Стандарт - уютное жилье</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-container" id="resultsContainer">
+          <div class="result-header">
+            <div class="result-emoji" id="resultEmoji">🏖️</div>
+            <h3 class="result-title" id="resultTitle">Ваше идеальное место отдыха</h3>
+            <p class="result-subtitle" id="resultSubtitle">На основе ваших ответов мы рекомендуем следующее:</p>
+          </div>
+          <div class="recommended-places" id="recommendedPlaces">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="../JS/quiz.js"></script>
+</body>
+</html>
