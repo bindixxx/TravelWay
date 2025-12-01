@@ -307,6 +307,6 @@ const response = await fetch('https://your-api-endpoint.com/chat', {
 
 **Сделано с ❤️ командой TravelWay**
 
-[⬆ Вернуться к началу](#-travelway--premium-travel-platform)
+[⬆ Вернуться к началу](https://github.com/bindixxx/TravelWay)
 
 </div>
